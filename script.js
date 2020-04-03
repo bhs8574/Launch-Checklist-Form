@@ -45,25 +45,25 @@ window.addEventListener("load", function() {
       } else {
       	fieldCheck = true;
       }
-      if (typeof String(pilotNameInput.value) !== "string" ) {
+      if (typeof String(pilotNameInput.value) !== "string" || pilotNameInput.value.trim().length === 0) {
          alert("Please enter a name in text for the Pilot");
          event.preventDefault();
          fieldCheck = false;
          document.getElementById("pilotStatus").innerText = "Pilot is MIA";
       }
-      if (!isNaN(Number(pilotNameInput.value))) {
+      if (!isNaN(Number(pilotNameInput.value)) && pilotNameInput.value.trim().length > 0) {
          alert("Please enter text instead of a number for Pilot Name.");
          event.preventDefault();
          fieldCheck = false;
          document.getElementById("pilotStatus").innerText = "Pilot is a number and should be a person.";
       }
-      if (typeof String(coPilotNameInput.value) !== "string") {
+      if (typeof String(coPilotNameInput.value) !== "string" || coPilotNameInput.value.trim().length === 0) {
          alert("Please enter a name in text for the Co-Pilot");
          event.preventDefault();
          fieldCheck = false;
          document.getElementById("copilotStatus").innerText = "Co-Pilot is MIA";
       }
-      if (!isNaN(Number(coPilotNameInput.value))) {
+      if (!isNaN(Number(coPilotNameInput.value)) && coPilotNameInput.value.trim().length > 0) {
          alert("Please enter text instead of a number for Co-Pilot Name.");
          event.preventDefault();
          fieldCheck = false;
