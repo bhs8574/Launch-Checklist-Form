@@ -43,17 +43,29 @@ window.addEventListener("load", function() {
          event.preventDefault();
          fieldCheck = false;
       }
-      if (typeof String(pilotNameInput.value) !== "string") {
+      if (typeof String(pilotNameInput.value) !== "string" ) {
          alert("Please enter a name in text for the Pilot");
          event.preventDefault();
          fieldCheck = false;
          document.getElementById("pilotStatus").innerText = "Pilot is MIA";
       }
+      if (!isNaN(Number(pilotNameInput.value))) {
+         alert("Please enter text instead of a number for Pilot Name.");
+         event.preventDefault();
+         fieldCheck = false;
+         document.getElementById("pilotStatus").innerText = "Pilot is a number and should be a person.";
+      }
       if (typeof String(coPilotNameInput.value) !== "string") {
          alert("Please enter a name in text for the Co-Pilot");
          event.preventDefault();
          fieldCheck = false;
-         document.getElementById("coPilotStatus").innerText = "Co-Pilot is MIA";
+         document.getElementById("copilotStatus").innerText = "Co-Pilot is MIA";
+      }
+      if (!isNaN(Number(coPilotNameInput.value))) {
+         alert("Please enter text instead of a number for Co-Pilot Name.");
+         event.preventDefault();
+         fieldCheck = false;
+         document.getElementById("copilotStatus").innerText = "Co-Pilot is a number and should be a person.";
       }
       if (typeof Number(fuelLevelInput.value) !== "number" || isNaN(Number(fuelLevelInput.value))) {
          alert("Please enter a number for the Fuel Level");
@@ -88,7 +100,7 @@ window.addEventListener("load", function() {
       if (fuelReady && cargoReady && fieldCheck) {
          document.getElementById('launchStatus').innerText = 'Shuttle is ready for launch!';
          document.getElementById('launchStatus').style.color= "green";
-         //event.preventDefault() // I don't know if I should do this or not, but right now I am.
+         event.preventDefault() 
       }
    });
 });
