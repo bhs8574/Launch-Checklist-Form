@@ -84,6 +84,7 @@ window.addEventListener("load", function() {
          document.getElementById("fuelStatus").innerText = `There is not enough fuel for the journey! We have ${fuelLevelInput.value}L loaded and at least 10,000L are needed!`
          document.getElementById('launchStatus').innerText = 'Shuttle not ready for launch!';
          document.getElementById('launchStatus').style.color= "red";
+         fuelReady = false;
          event.preventDefault();
       } else {
          fuelReady = true;
@@ -93,6 +94,7 @@ window.addEventListener("load", function() {
          document.getElementById("cargoStatus").innerText = `There is too much mass for the shuttle to take off! Max load is 10,000kg and we have ${cargoMassInput.value}kg!`
          document.getElementById('launchStatus').innerText = 'Shuttle not ready for launch!';
          document.getElementById('launchStatus').style.color= "red";
+         cargoReady = false;
          event.preventDefault();
       } else {
          cargoReady = true;
