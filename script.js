@@ -31,7 +31,7 @@ window.addEventListener("load", function() {
       document.getElementById("copilotStatus").innerText = `Co-Pilot ${coPilotNameInput.value} Ready`;
       document.getElementById("fuelStatus").innerText = "Fuel Level high enough for launch";
       document.getElementById("cargoStatus").innerText = "Cargo Mass low enough for launch";
-      fieldCheck = true;
+      fieldCheck = false;
       cargoReady = false;
       fuelReady = false;
 
@@ -42,6 +42,8 @@ window.addEventListener("load", function() {
          alert("All fields are required!");
          event.preventDefault();
          fieldCheck = false;
+      } else {
+      	fieldCheck = true;
       }
       if (typeof String(pilotNameInput.value) !== "string" ) {
          alert("Please enter a name in text for the Pilot");
