@@ -35,53 +35,39 @@ window.addEventListener("load", function() {
       cargoReady = false;
       fuelReady = false;
 
-      console.log(fuelLevelInput.value);
-      console.log(Number(fuelLevelInput.value));
-
       if (pilotNameInput.value.trim() === "" || coPilotNameInput.value.trim() === "" || fuelLevelInput.value.trim() === "" || cargoMassInput.value.trim() === "") {
          alert("All fields are required!");
          event.preventDefault();
          fieldCheck = false;
-      } else {
-      	fieldCheck = true;
-      }
-      if (typeof String(pilotNameInput.value) !== "string" || pilotNameInput.value.trim().length === 0) {
+      } else if (typeof String(pilotNameInput.value) !== "string" || pilotNameInput.value.trim().length === 0) {
          alert("Please enter a name in text for the Pilot");
          event.preventDefault();
          fieldCheck = false;
-         document.getElementById("pilotStatus").innerText = "Pilot is MIA";
-      }
-      if (!isNaN(Number(pilotNameInput.value)) && pilotNameInput.value.trim().length > 0) {
+      } else if (!isNaN(Number(pilotNameInput.value)) && pilotNameInput.value.trim().length > 0) {
          alert("Please enter text instead of a number for Pilot Name.");
          event.preventDefault();
          fieldCheck = false;
-         document.getElementById("pilotStatus").innerText = "Pilot is a number and should be a person.";
-      }
-      if (typeof String(coPilotNameInput.value) !== "string" || coPilotNameInput.value.trim().length === 0) {
+      } else if (typeof String(coPilotNameInput.value) !== "string" || coPilotNameInput.value.trim().length === 0) {
          alert("Please enter a name in text for the Co-Pilot");
          event.preventDefault();
          fieldCheck = false;
-         document.getElementById("copilotStatus").innerText = "Co-Pilot is MIA";
-      }
-      if (!isNaN(Number(coPilotNameInput.value)) && coPilotNameInput.value.trim().length > 0) {
+      } else if (!isNaN(Number(coPilotNameInput.value)) && coPilotNameInput.value.trim().length > 0) {
          alert("Please enter text instead of a number for Co-Pilot Name.");
          event.preventDefault();
          fieldCheck = false;
-         document.getElementById("copilotStatus").innerText = "Co-Pilot is a number and should be a person.";
-      }
-      if (typeof Number(fuelLevelInput.value) !== "number" || isNaN(Number(fuelLevelInput.value))) {
+      } else if (typeof Number(fuelLevelInput.value) !== "number" || isNaN(Number(fuelLevelInput.value))) {
          alert("Please enter a number for the Fuel Level");
          event.preventDefault();
          fieldCheck = false;
-         document.getElementById("fuelStatus").innerText = "Fuel Level could not be confirmed";
-      }
-      if (typeof Number(cargoMassInput.value) !== "number" || isNaN(Number(cargoMassInput.value))) {
+      } else if (typeof Number(cargoMassInput.value) !== "number" || isNaN(Number(cargoMassInput.value))) {
          alert("Please enter a number for the Cargo Mass");
          event.preventDefault();
          fieldCheck = false;
-         document.getElementById("cargoStatus").innerText = "Cargo Mass could not be confirmed";
+      } else {
+         fieldCheck = true;
       }
-      if (Number(fuelLevelInput.value) < 10000) {
+
+      if (Number(fuelLevelInput.value) < 10000 && fieldCheck) {
          document.getElementById("faultyItems").style.visibility = "visible";
          document.getElementById("fuelStatus").innerText = `There is not enough fuel for the journey! We have ${fuelLevelInput.value}L loaded and at least 10,000L are needed!`
          document.getElementById('launchStatus').innerText = 'Shuttle not ready for launch!';
@@ -91,7 +77,7 @@ window.addEventListener("load", function() {
       } else {
          fuelReady = true;
       }
-      if (Number(cargoMassInput.value) > 10000) {
+      if (Number(cargoMassInput.value) > 10000 && fieldCheck) {
          document.getElementById("faultyItems").style.visibility = "visible";
          document.getElementById("cargoStatus").innerText = `There is too much mass for the shuttle to take off! Max load is 10,000kg and we have ${cargoMassInput.value}kg!`
          document.getElementById('launchStatus').innerText = 'Shuttle not ready for launch!';
@@ -102,20 +88,11 @@ window.addEventListener("load", function() {
          cargoReady = true;
       }
       if (fuelReady && cargoReady && fieldCheck) {
+         document.getElementById("faultyItems").style.visibility = "visible";
          document.getElementById('launchStatus').innerText = 'Shuttle is ready for launch!';
          document.getElementById('launchStatus').style.color= "green";
          event.preventDefault() 
       }
    });
 });
-/* This block of code shows how to format the HTML once you fetch some planetary JSON!
-<h2>Mission Destination</h2>
-<ol>
-   <li>Name: ${}</li>
-   <li>Diameter: ${}</li>
-   <li>Star: ${}</li>
-   <li>Distance from Earth: ${}</li>
-   <li>Number of Moons: ${}</li>
-</ol>
-<img src="${}">
-*/
+
