@@ -27,10 +27,13 @@ window.addEventListener("load", function() {
       let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
       let cargoMassInput = document.querySelector("input[name=cargoMass]");
 
+      document.getElementById('launchStatus').innerText = 'Awaiting Information Before Launch';
+      document.getElementById('launchStatus').style.color= "black";
       document.getElementById("pilotStatus").innerText = `Pilot ${pilotNameInput.value} Ready`;
       document.getElementById("copilotStatus").innerText = `Co-Pilot ${coPilotNameInput.value} Ready`;
       document.getElementById("fuelStatus").innerText = "Fuel Level high enough for launch";
       document.getElementById("cargoStatus").innerText = "Cargo Mass low enough for launch";
+
       fieldCheck = false;
       cargoReady = false;
       fuelReady = false;
@@ -39,30 +42,37 @@ window.addEventListener("load", function() {
          alert("All fields are required!");
          event.preventDefault();
          fieldCheck = false;
+         document.getElementById("faultyItems").style.visibility = "hidden";
       } else if (typeof String(pilotNameInput.value) !== "string" || pilotNameInput.value.trim().length === 0) {
          alert("Please enter a name in text for the Pilot");
          event.preventDefault();
          fieldCheck = false;
+         document.getElementById("faultyItems").style.visibility = "hidden";
       } else if (!isNaN(Number(pilotNameInput.value)) && pilotNameInput.value.trim().length > 0) {
          alert("Please enter text instead of a number for Pilot Name.");
          event.preventDefault();
          fieldCheck = false;
+         document.getElementById("faultyItems").style.visibility = "hidden";
       } else if (typeof String(coPilotNameInput.value) !== "string" || coPilotNameInput.value.trim().length === 0) {
          alert("Please enter a name in text for the Co-Pilot");
          event.preventDefault();
          fieldCheck = false;
+         document.getElementById("faultyItems").style.visibility = "hidden";
       } else if (!isNaN(Number(coPilotNameInput.value)) && coPilotNameInput.value.trim().length > 0) {
          alert("Please enter text instead of a number for Co-Pilot Name.");
          event.preventDefault();
          fieldCheck = false;
+         document.getElementById("faultyItems").style.visibility = "hidden";
       } else if (typeof Number(fuelLevelInput.value) !== "number" || isNaN(Number(fuelLevelInput.value))) {
          alert("Please enter a number for the Fuel Level");
          event.preventDefault();
          fieldCheck = false;
+         document.getElementById("faultyItems").style.visibility = "hidden";
       } else if (typeof Number(cargoMassInput.value) !== "number" || isNaN(Number(cargoMassInput.value))) {
          alert("Please enter a number for the Cargo Mass");
          event.preventDefault();
          fieldCheck = false;
+         document.getElementById("faultyItems").style.visibility = "hidden";
       } else {
          fieldCheck = true;
       }
